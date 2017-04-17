@@ -3,7 +3,7 @@ exports.up = function(knex, Promise) {
   return knex.schema.createTable('shows', function(table){
     table.increments();
     table.string('name').notNullable().unique();
-    table.string('network').notNullable();
+    table.string('channel').notNullable();
     table.string('genre').notNullable();
     table.boolean('inProduction').notNullable();
   })
@@ -14,4 +14,4 @@ exports.up = function(knex, Promise) {
   })
 };
 
-exports.down = (knex, Promise) => knex.dropTable('shows').dropTable('favorites')
+exports.down = (knex, Promise) => knex.schema.dropTable('favorites').dropTable('shows')
