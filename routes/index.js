@@ -1,10 +1,11 @@
 "use strict;"
 
 const { Router } = require('express');
-
 const router = Router();
+// pull method from Show model
+const { getShows } = require('../controllers/showCtrl');
 
-router.get('/shows', (req, res, next) => {
-  // sending back to the client directly
-  res.status(200)
-})
+router.get('/shows', getShows)
+
+
+module.exports = router;
