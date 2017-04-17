@@ -4,14 +4,16 @@ process.env.NODE_ENV = 'test';
 
 const chai = require('chai');
 // establish should diolect
+
 const should = chai.should();
 const chaiHttp = require('chai-http');
 const server = require('../app');
 const { knex } = require('../db/database');
 
+
 chai.use(chaiHttp)
 
-//
+
 describe('Shows routes', () => {
 
   beforeEach( () => {
@@ -20,7 +22,7 @@ describe('Shows routes', () => {
   .then( () => {
     return knex.migrate.latest()
   })
-  then( () => {
+  .then( () => {
     return knex.seed.run()
   })
 
@@ -33,5 +35,6 @@ describe('Shows routes', () => {
       })
     })
   })
+
 
 });
