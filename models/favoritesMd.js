@@ -1,24 +1,21 @@
-"use strict;"
+"use strict";
 
-const bookshelf = require('../db/database');
+const { bookshelf } = require('../db/database');
 
 const Favorite = bookshelf.Model.extend({
-    tableName: 'favorites',
-    show: function(){ return this.belongsTo(Show)}
-  }, {
+  tableName: 'favorites',
+  show: function() { return this.belongsTo(Show) }
+}, {
   getAll: function() {
-    console.log('Get all called from Favorite model');
     return this.forge()
     .fetchAll()
     .then( (rows) => {
       return rows
     })
-    .catch((err) => {
-      return err
-    })
+    .catch( (error) => {
+      return error
+    });
   }
-
-})
-
+});
 
 module.exports = bookshelf.model('Favorite', Favorite);
